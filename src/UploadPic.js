@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { storage, database } from "./firebase";
+import { storage, database, db } from "./firebase";
 import ImageUploader from "react-images-upload";
 
 class UploadPic extends Component {
   render() {
     this.storageRef = storage.ref("/user-images").child(this.props.uid);
-    this.userRef = database.ref("/users").child(this.props.uid);
+
     const { photoURL, displayName, email } = this.props.user;
     return (
       <div>
@@ -35,14 +35,19 @@ class UploadPic extends Component {
     const upload = this.storageRef.child(file.name).put(file, metaData);
 
     upload
-      .then(snapshot => {
-        return snapshot.ref.getDownloadURL();
+      .then(onSnapshot => {
+        return onSnapshot.ref.getDownloadURL();
       })
       .then(downloadURL => {
-        this.userRef.child("profilePic").set(downloadURL);
-        this.userRef.child("displayName").set(displayName);
-        this.userRef.child("email").set(email);
-        this.userRef.child("matchedImages").set(array);
+        db
+          .collection("users")
+          .doc(this.props.uid)
+          .set({
+            profilePic: downloadURL,
+            displayName: displayName,
+            email: email,
+            matchedImages: []
+          });
       });
   };
 }
