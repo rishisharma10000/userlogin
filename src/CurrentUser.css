@@ -1,0 +1,14 @@
+.CurrentUser {
+  border: 1px solid rgb(247, 141, 141);
+  display: flex;
+  justify-content: space-between;
+}
+
+.CurrentUser-id {
+  padding: 1em;
+  flex: 1;
+}
+
+.CurrentUser-image {
+  max-height: 150px;
+}
