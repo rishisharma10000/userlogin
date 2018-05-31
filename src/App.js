@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import { auth, database, db } from "./firebase";
 import SignIn from "./SignIn";
 import CurrentUser from "./CurrentUser";

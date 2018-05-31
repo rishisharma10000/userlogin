@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import { storage, database, db } from "./firebase";
 import ImageUploader from "react-images-upload";
+import ViewPhotos from "./ViewPhotos";
 
 class UploadPic extends Component {
+  state = {
+    view: false
+  };
   render() {
     this.storageRef = storage.ref("/user-images").child(this.props.uid);
-
-    const { photoURL, displayName, email } = this.props.user;
+    const { view } = this.state;
+    const { photoURL, displayName, email, matchedImages } = this.props.user;
     return (
       <div>
         <img src={photoURL} />
@@ -19,9 +23,21 @@ class UploadPic extends Component {
             imgExtension={[".jpg", ".gif", ".png", ".gif"]}
           />
         }
+        <div>
+          <button onClick={this.viewPhotos}>
+            {!view ? "View Photos" : "Close Photos"}
+          </button>
+          {view && <ViewPhotos user={this.props.user} />}
+        </div>
       </div>
     );
   }
+
+  viewPhotos = () => {
+    this.setState({
+      view: !this.state.view
+    });
+  };
 
   handleSubmit = event => {
     const { photoURL, displayName, email } = this.props.user;
