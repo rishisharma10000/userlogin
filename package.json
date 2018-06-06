@@ -3,15 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "^4.1.1",
     "create-react-class": "^15.6.3",
     "firebase": "^5.0.4",
+    "fs": "0.0.1-security",
+    "image-watermark": "0.0.7",
     "lodash": "^4.17.10",
     "react": "^16.4.0",
+    "react-component-gallery": "^1.2.1",
     "react-dom": "^16.4.0",
     "react-file-input": "^0.2.5",
     "react-image-show": "^0.2.4",
     "react-image-slider": "^0.1.0",
     "react-images-upload": "^1.1.99",
+    "react-paypal-express-checkout": "^1.0.4",
+    "react-photo-gallery": "^6.0.27",
     "react-scripts": "1.1.4"
   },
   "scripts": {

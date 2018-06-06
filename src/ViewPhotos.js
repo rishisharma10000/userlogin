@@ -1,26 +1,29 @@
 import React, { Component } from "react";
 import SlideShow from "react-image-show";
 import { db } from "./firebase";
+import Payment from "./Payment";
 
 class ViewPhotos extends Component {
   state = {
     images: []
   };
   componentDidMount() {
-    db
-      .collection("users")
+    db.collection("users")
       .doc(this.props.user.uid)
       .get()
       .then(user => {
         this.setState({
-          images: user.data().matchedImages
+          images: user.data().matchedImages.watermarked.map(image => {
+            return image.path;
+          })
         });
       });
   }
   render() {
     const { images } = this.state;
-    // const { photoURL } = this.props.user;
-    // arr.push(photoURL);
+
+    const { photoURL } = this.props.user;
+
     return (
       <div>
         {console.log(images)}

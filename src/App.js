@@ -4,6 +4,7 @@ import SignIn from "./SignIn";
 import CurrentUser from "./CurrentUser";
 import UploadPic from "./UploadPic";
 import pick from "lodash/pick";
+import image from "./logo.png";
 
 import "./App.css";
 
@@ -35,8 +36,8 @@ class App extends Component {
     const { user, userData } = this.state;
     return (
       <div className="App">
-        <div className="App-header">
-          <h2>Welcome to PicLink</h2>
+        <div>
+          <img src={image} />
         </div>
 
         {!user && <SignIn />}

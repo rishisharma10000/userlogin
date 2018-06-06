@@ -6,10 +6,10 @@ class SignIn extends Component {
     return (
       <div className="SignIn">
         <button onClick={() => auth.signInWithRedirect(googleAuthProvider)}>
-          Sign in with G👀gle
+          Sign in with Google
         </button>
         <button onClick={() => auth.signInWithRedirect(facebookAuthProvider)}>
-          Sign in with ⓕacebook
+          Sign in with Facebook
         </button>
       </div>
     );
