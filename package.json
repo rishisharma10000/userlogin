@@ -18,7 +18,9 @@
     "react-images-upload": "^1.1.99",
     "react-paypal-express-checkout": "^1.0.4",
     "react-photo-gallery": "^6.0.27",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "react-stripe-elements": "^2.0.0",
+    "stripe": "^6.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

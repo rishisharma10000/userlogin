@@ -5,7 +5,6 @@ import CurrentUser from "./CurrentUser";
 import UploadPic from "./UploadPic";
 import pick from "lodash/pick";
 import image from "./logo.png";
-
 import "./App.css";
 
 class App extends Component {

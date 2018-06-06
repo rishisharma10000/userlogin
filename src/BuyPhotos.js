@@ -6,7 +6,9 @@ import Payment from "./Payment";
 class BuyPhotos extends Component {
   state = {
     images: [],
-    selectedImage: null
+    selectedImage: null,
+    selectedId: null,
+    stripe: null
   };
   componentDidMount() {
     db.collection("users")
@@ -14,12 +16,13 @@ class BuyPhotos extends Component {
       .get()
       .then(user => {
         this.setState({
-          images: user.data().matchedImages.watermarked
+          images: user.data().matchedImages.watermarked,
+          stripe: user.data().stripe
         });
       });
   }
   render() {
-    const { images } = this.state;
+    const { images, stripe } = this.state;
     const photoSet = [];
     images.map(image => {
       photoSet.push({
@@ -34,14 +37,20 @@ class BuyPhotos extends Component {
       <div>
         <Gallery photos={photoSet} onClick={this.handleClick} />
         {this.state.selectedImage && (
-          <Payment selectedImage={this.state.selectedImage} />
+          <Payment
+            selectedImage={this.state.selectedImage}
+            id={this.state.selectedId}
+            user={this.props.user.uid}
+            stripe={stripe}
+          />
         )}
       </div>
     );
   }
   handleClick = event => {
     this.setState({
-      selectedImage: event.target.src
+      selectedImage: event.target.src,
+      selectedId: event.target.id
     });
   };
 }

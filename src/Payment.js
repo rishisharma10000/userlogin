@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+
+import { render } from "react-dom";
+import { StripeProvider } from "react-stripe-elements";
 import StripeForm from "./StripeForm";
 
 class Payment extends Component {
@@ -20,7 +23,18 @@ class Payment extends Component {
             Buy Now
           </button>
         </div>
-        <div>{this.state.stripeForm && <StripeForm />}</div>
+        <div>
+          {this.state.stripeForm && (
+            <StripeProvider apiKey="pk_test_QYucUddzlm1cyC0dSvBiepAP">
+              <StripeForm
+                image={this.props.selectedImage}
+                id={this.props.id}
+                user={this.props.user}
+                stripe={this.props.stripe}
+              />
+            </StripeProvider>
+          )}
+        </div>
       </div>
     );
   }

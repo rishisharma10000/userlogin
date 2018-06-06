@@ -3,15 +3,17 @@ import { storage, database, db } from "./firebase";
 import ImageUploader from "react-images-upload";
 import ViewPhotos from "./ViewPhotos";
 import BuyPhotos from "./BuyPhotos";
+import OwnedPhotos from "./OwnedPhotos";
 
 class UploadPic extends Component {
   state = {
     view: false,
-    buy: false
+    buy: false,
+    owned: false
   };
   render() {
     this.storageRef = storage.ref("/users").child(this.props.uid);
-    const { view, buy } = this.state;
+    const { view, buy, owned } = this.state;
     const { photoURL, displayName, email, matchedImages } = this.props.user;
     return (
       <div className="uploadPic">
@@ -41,9 +43,23 @@ class UploadPic extends Component {
           </button>
           {buy && <BuyPhotos user={this.props.user} />}
         </div>
+        <div>
+          <button
+            className="btn btn-outline-light btn-light"
+            onClick={this.ownedPhotos}
+          >
+            {!owned ? "View Owned Photos" : "Close Photos"}
+          </button>
+          {owned && <OwnedPhotos user={this.props.user} />}
+        </div>
       </div>
     );
   }
+  ownedPhotos = () => {
+    this.setState({
+      owned: !this.state.owned
+    });
+  };
 
   viewPhotos = () => {
     this.setState({

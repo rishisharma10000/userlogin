@@ -1,23 +1,24 @@
 import React, { Component } from "react";
 
-import "./StripeCSS.css";
-import PaypalExpressBtn from "react-paypal-express-checkout";
+import { Elements } from "react-stripe-elements";
+
+import InjectedCheckoutForm from "./CheckoutForm";
 
 class StripeForm extends Component {
   render() {
-    const client = {
-      sandbox: "YOUR-SANDBOX-APP-ID",
-      production: "YOUR-PRODUCTION-APP-ID"
-    };
     return (
       <div>
-        <PaypalExpressBtn client={client} currency={"USD"} total={1.0} />
+        <Elements>
+          <InjectedCheckoutForm
+            image={this.props.image}
+            id={this.props.id}
+            user={this.props.user}
+            stripe={this.props.stripe}
+          />
+        </Elements>
       </div>
     );
   }
-  handleSubmit = event => {
-    console.log(event.target);
-  };
 }
 
 export default StripeForm;
