@@ -14,7 +14,7 @@ class UploadPic extends Component {
     const { view, buy } = this.state;
     const { photoURL, displayName, email, matchedImages } = this.props.user;
     return (
-      <div>
+      <div className="uploadPic">
         {
           <ImageUploader
             withIcon={true}
@@ -24,13 +24,19 @@ class UploadPic extends Component {
           />
         }
         <div>
-          <button onClick={this.viewPhotos}>
+          <button
+            className="btn btn-outline-light btn-light"
+            onClick={this.viewPhotos}
+          >
             {!view ? "View Photos" : "Close Photos"}
           </button>
           {view && <ViewPhotos user={this.props.user} />}
         </div>
         <div>
-          <button onClick={this.buyPhotos}>
+          <button
+            className="btn btn-outline-light btn-light"
+            onClick={this.buyPhotos}
+          >
             {!buy ? "View Purchaseable Photos" : "Close Photos"}
           </button>
           {buy && <BuyPhotos user={this.props.user} />}

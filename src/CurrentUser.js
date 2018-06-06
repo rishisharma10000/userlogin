@@ -37,13 +37,12 @@ class CurrentUser extends Component {
           ) : (
             <div>
               <img src={this.state.newUser.profilePic} id="image" />
-              <h3>{this.state.newUser.displayName}</h3>
-              <h4>{this.state.newUser.uid}</h4>
-              <p>{this.state.newUser.email}</p>
+
+              <h3>{this.props.user.displayName}</h3>
+              <h4>{this.props.user.uid}</h4>
+              <p>{this.props.user.email}</p>
             </div>
           )}
-
-          <button onClick={() => auth.signOut()}>Sign Out</button>
         </div>
       </div>
     );

@@ -13,7 +13,12 @@ class Payment extends Component {
           <img src={this.props.selectedImage} height="400" width="400" />
         </div>
         <div>
-          <button onClick={this.handleClick}>Buy Now</button>
+          <button
+            className="btn btn-outline-light btn-light"
+            onClick={this.handleClick}
+          >
+            Buy Now
+          </button>
         </div>
         <div>{this.state.stripeForm && <StripeForm />}</div>
       </div>

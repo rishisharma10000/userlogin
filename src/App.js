@@ -18,16 +18,16 @@ class App extends Component {
   componentDidMount() {
     auth.onAuthStateChanged(user => {
       this.setState({ user });
-      if (user) {
-        this.usersRef = db.collection("users");
-        this.userRef = this.usersRef(user.uid);
+      // if (user) {
+      //   this.usersRef = db.collection("users");
+      //   this.userRef = this.usersRef(user.uid);
 
-        this.userRef.once("value").then(onSnapshot => {
-          if (onSnapshot.val()) return;
-          const userData = pick(user, ["displayName", "email"]);
-          this.setState({ userData });
-        });
-      }
+      //   this.userRef.once("value").then(onSnapshot => {
+      //     if (onSnapshot.val()) return;
+      //     const userData = pick(user, ["displayName", "email"]);
+      //     this.setState({ userData });
+      //   });
+      // }
     });
   }
   render() {
@@ -35,18 +35,27 @@ class App extends Component {
     this.userRef;
     const { user, userData } = this.state;
     return (
-      <div className="App">
-        <div>
-          <img src={image} />
-        </div>
+      <div className={user ? "App " : "App homepage-login"}>
+        <img className="logo" src={image} />
 
         {!user && <SignIn />}
+
         {user && (
           <div>
             <div>
+              <CurrentUser user={user} />
+            </div>
+            <div className="uploadedPic">
               <UploadPic user={user} uid={user.uid} />
             </div>
-            <CurrentUser user={user} />
+            <div>
+              <button
+                className="btn btn-outline-light btn-light"
+                onClick={() => auth.signOut()}
+              >
+                Sign Out
+              </button>
+            </div>
           </div>
         )}
       </div>
