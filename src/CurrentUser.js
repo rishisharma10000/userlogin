@@ -21,29 +21,22 @@ class CurrentUser extends Component {
   render() {
     return (
       <div className="CurrentUser">
-        {/* <img
-          className="CurrentUser-image"
-          src={user.photoURL}
-          alt={user.displayName}
-        /> */}
-        <div className="CurrentUser-id">
-          {!this.state.newUser ? (
-            <div>
-              <img src={this.props.user.profileURL} id="image" />
-              <h3>{this.props.user.displayName}</h3>
-              <h4>{this.props.user.uid}</h4>
-              <p>{this.props.user.email}</p>
-            </div>
-          ) : (
-            <div>
-              <img src={this.state.newUser.profilePic} id="image" />
+        {!this.state.newUser ? (
+          <div>
+            <img src={this.props.user.photoURL} id="CurrentUser-image" />
+            <h3>{this.props.user.displayName}</h3>
 
-              <h3>{this.props.user.displayName}</h3>
-              <h4>{this.props.user.uid}</h4>
-              <p>{this.props.user.email}</p>
-            </div>
-          )}
-        </div>
+            <p>{this.props.user.email}</p>
+          </div>
+        ) : (
+          <div>
+            <img src={this.state.newUser.profilePic} id="CurrentUser-image" />
+
+            <h3>{this.props.user.displayName}</h3>
+
+            <p>{this.props.user.email}</p>
+          </div>
+        )}
       </div>
     );
   }

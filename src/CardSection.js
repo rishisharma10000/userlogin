@@ -6,8 +6,10 @@ class CardSection extends Component {
     return (
       <div>
         <form>
-          Card details
-          <CardElement />
+          Enter your card details :
+          <div style={{ width: "350px", margin: "0 auto" }}>
+            <CardElement />
+          </div>
         </form>
       </div>
     );

@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { auth, database, db } from "./firebase";
 import SignIn from "./SignIn";
 import CurrentUser from "./CurrentUser";
-import UploadPic from "./UploadPic";
+import ViewPics from "./ViewPics";
 import pick from "lodash/pick";
 import image from "./logo.png";
-import "./App.css";
+import Newupload from "./Newupload";
 
 class App extends Component {
   state = {
@@ -41,20 +41,31 @@ class App extends Component {
 
         {user && (
           <div>
-            <div>
-              <CurrentUser user={user} />
-            </div>
-            <div className="uploadedPic">
-              <UploadPic user={user} uid={user.uid} />
-            </div>
-            <div>
-              <button
-                className="btn btn-outline-light btn-light"
-                onClick={() => auth.signOut()}
+            <div class="user-upload">
+              <div>
+                <CurrentUser user={user} />
+                <Newupload user={user} uid={user.uid} />
+                <div>
+                  <button
+                    className="btn btn-outline-light btn-light"
+                    onClick={() => auth.signOut()}
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              </div>
+
+              <div
+                className="uploadedPic"
+                style={{
+                  width: "80%",
+                  margin: "0 1.5%"
+                }}
               >
-                Sign Out
-              </button>
+                <ViewPics user={user} uid={user.uid} />
+              </div>
             </div>
+            <div />
           </div>
         )}
       </div>

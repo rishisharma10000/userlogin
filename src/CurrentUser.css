@@ -1,19 +1,10 @@
 .CurrentUser {
-  display: flex;
-  justify-content: space-between;
-}
-
-.CurrentUser-id {
   padding: 1em;
   flex: 1;
 }
 
-.CurrentUser-image {
-  max-height: 150px;
-}
-
-#image {
-  height: 200px;
-  width: 200px;
+#CurrentUser-image {
+  max-height: 120px;
+  width: 120px;
   border-radius: 20px;
 }

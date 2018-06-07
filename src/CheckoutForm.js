@@ -14,21 +14,23 @@ class CheckoutForm extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <CardSection />
-          <button>Register Card</button>
+          {/* <button>Register Card</button> */}
+          <button className="btn btn-outline-light btn-light">
+            Pay for photo
+          </button>
         </form>
-        <button onClick={this.handlePay}>Pay for button</button>
       </div>
     );
   }
 
-  handlePay = event => {
-    db.collection("payments").add({
-      userId: this.props.user,
-      imageId: this.props.id,
-      amount: 100,
-      source: "tok_visa"
-    });
-  };
+  // handlePay = event => {
+  //   db.collection("payments").add({
+  //     userId: this.props.user,
+  //     imageId: this.props.id,
+  //     amount: 100,
+  //     source: "tok_visa"
+  //   });
+  // };
 
   handleSubmit = event => {
     console.log(this.props.stripe);
@@ -38,6 +40,7 @@ class CheckoutForm extends Component {
         type: "card",
         name: "Test Person"
       })
+
       .then(({ token: { id } }) => {
         console.log(
           "Received Stripe token:",
@@ -56,7 +59,16 @@ class CheckoutForm extends Component {
             },
             { merge: true }
           );
-      });
+      })
+      .then(response => {
+        db.collection("payments").add({
+          userId: this.props.user,
+          imageId: this.props.id,
+          amount: 100,
+          source: "tok_visa"
+        });
+      })
+      .catch(console.log);
   };
 }
 
