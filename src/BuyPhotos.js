@@ -27,15 +27,20 @@ class BuyPhotos extends Component {
     images.map(image => {
       photoSet.push({
         src: image.path,
-        width: 3,
-        height: 3,
+        width: 100,
+        height: 100,
         id: image.imageId
       });
     });
     console.log(photoSet);
     return (
       <div>
-        <Gallery photos={photoSet} onClick={this.handleClick} />
+        <Gallery
+          photos={photoSet}
+          onClick={this.handleClick}
+          columns={1}
+          margin={2}
+        />
         {this.state.selectedImage && (
           <Payment
             selectedImage={this.state.selectedImage}

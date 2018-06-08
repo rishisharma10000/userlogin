@@ -18,12 +18,26 @@ class CurrentUser extends Component {
       });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    // only update chart if the data has changed
+    if (prevState.newUser !== this.state.newUser) {
+      db.collection("users")
+        .doc(this.props.user.uid)
+        .get()
+        .then(user => {
+          this.setState({
+            newUser: user.data()
+          });
+        });
+    }
+  }
+
   render() {
     return (
       <div className="CurrentUser">
         {!this.state.newUser ? (
           <div>
-            <img src={this.props.user.photoURL} id="CurrentUser-image" />
+            {/* //<img src={this.props.user.photoURL} id="CurrentUser-image" /> */}
             <h3>{this.props.user.displayName}</h3>
 
             <p>{this.props.user.email}</p>
